@@ -915,10 +915,18 @@ function loadQuestion() {
     (question.qAnswer == "") ? (options.push(question.name)) : (options.push(question.qAnswer));
     options = shuffleArray(options);
 
-    // PRELOAD تصویر سوال بعدی
+    // PRELOAD تصویر سوال بعدی به صورت رسمی
     if (currentQuestion + 1 < lams.length) {
-      const preloadImage = new Image();
-      preloadImage.src = lams[currentQuestion + 1].image;
+    const nextImageUrl = lams[currentQuestion + 1].image;
+
+        // چک کن اگه از قبل preload نشده
+        if (!document.querySelector(`link[rel="preload"][href="${nextImageUrl}"]`)) {
+            const preloadLink = document.createElement('link');
+            preloadLink.rel = 'preload';
+            preloadLink.as = 'image';
+            preloadLink.href = nextImageUrl;
+            document.head.appendChild(preloadLink);
+        }
     }
 
     // ساخت دکمه‌ها
