@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بازی انگل‌شناسی</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Lalezar&family=Vazirmatn:wght@100..900&display=swap');
+        .font-vazirmatn {
+          font-family: 'Vazirmatn', sans-serif;
+        }
+        .font-lalezar {
+          font-family: 'Lalezar', sans-serif;
+        }
+        /* افکت‌ها و انیمیشن‌ها */
+        .fade-in {
+          animation: fadeIn 0.3s ease-in-out forwards;
+        }
+      
+        .fade-out {
+          animation: fadeOut 0.3s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: scale(0.95);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+
+        @keyframes fadeOut {
+          from {
+            opacity: 1;
+            transform: scale(1);
+          }
+          to {
+            opacity: 0;
+            transform: scale(0.95);
+          }
+        }
+      </style>
+</head>
+<body class="bg-gray-900 text-white flex items-center justify-center min-h-screen">
+
+    <!-- Main Menu -->
+    <div id="main-menu" class="w-full max-w-md p-6 bg-gray-800 rounded-lg shadow-lg text-center font-vazirmatn">
+        <h1 class="text-3xl font-bold mb-8 font-lalezar">بازی انگل‌شناسی</h1>
+        <button onclick="location.href='game.html'" class="button bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg w-full mb-2">شروع بازی</button>
+        <button class="button bg-orange-900 text-white font-bold py-2 px-4 rounded-lg disabled w-full cursor-not-allowed mb-2" disabled>گالری</button>
+        <button onclick="showInstructions()" class="button bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg w-full">راهنما</button>
+        <p class="mt-6 text-gray-600">کاری از حمیدرضا دهقان و محمدرضا رضائی<br/>با نظارت دکتر رفیعی<br/>پزشکی مهر 1402 IUMS</p>
+    </div>
+
+    <!-- Instruction Modal -->
+    <div id="instruction-modal" class="fixed inset-0 bg-gray-900 bg-opacity-75 hidden flex items-center justify-center font-vazirmatn">
+        <div class="bg-gray-800 p-6 rounded-lg w-96 fade-in">
+            <h2 class="text-2xl font-bold mb-4 font-lalezar">راهنمای بازی 🦠</h2>
+            <p class="mb-4">
+                در هر مرحله، تصویر یه انگل نشون داده میشه و شما باید گزینه صحیح رو انتخاب کنید.
+                زمان محدوده و اگه زمان تموم بشه به سوال بعدی منتقل میشید.
+            </p>
+            <p class="mb-4 text-green-400">جواب درست ⬅️ امتیاز می‌گیری!</p>
+            <p class="mb-4 text-red-400">جواب غلط ⬅️ امتیاز از دست نمی‌دی، ولی باید بیشتر دقت کنی!</p>
+            <p class="mb-4 text-gray-400">از <b>محمدرضا مردانی</b> بابت عکس‌هایی که از لام‌ها گرفته ممنونیم ❤️</p>
+            <button onclick="closeInstructions()" class="button bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg w-full">
+                فهمیدم! 👌
+            </button>
+            <p class="mt-2 text-sm text-center text-gray-600">v1.0 beta - Spring 2025</p>
+        </div>
+    </div>
+    <script>
+      function showInstructions() {
+        document.getElementById('instruction-modal').classList.remove('hidden');
+      }
+      function closeInstructions() {
+        document.getElementById('instruction-modal').classList.add('hidden');
+      }
+    </script>
+</body>
+</html>

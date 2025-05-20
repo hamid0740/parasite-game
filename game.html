@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بازی انگل‌شناسی</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Lalezar&family=Vazirmatn:wght@100..900&display=swap');
+        .font-vazirmatn {
+          font-family: 'Vazirmatn', sans-serif;
+        }
+        .font-lalezar {
+          font-family: 'Lalezar', sans-serif;
+        }
+        .fade-in {
+          animation: fadeIn 0.3s ease-in-out forwards;
+        }
+      
+        .fade-out {
+          animation: fadeOut 0.3s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: scale(0.95);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+
+        @keyframes fadeOut {
+          from {
+            opacity: 1;
+            transform: scale(1);
+          }
+          to {
+            opacity: 0;
+            transform: scale(0.95);
+          }
+        }
+
+        body {
+      background-color: #f0f0f0;
+      font-family: sans-serif;
+    }
+
+        .button {
+          position: relative;
+          overflow: hidden;
+          padding: 10px 20px;
+          font-size: 18px;
+          background-color: blue;
+          color: white;
+        }
+
+        .button::after {
+          content: "";
+          position: absolute;
+          background: rgba(255, 255, 255, 0.5);
+          width: 0;
+          height: 0;
+          border-radius: 50%;
+          transition: width 0.5s ease, height 0.5s ease;
+        }
+
+        .button:active::after {
+          width: 200px;
+          height: 200px;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+        }
+        
+        button:hover:not(.bg-green-500):not(.bg-red-500) {
+          background-color: #3b82f6; /* رنگ هاور معمولی */
+        }
+        .bg-green-500 {
+          background-color: #22c55e !important; /* رنگ سبز با اولویت */
+        }
+        .bg-red-500 {
+          background-color: #ef4444 !important; /* رنگ قرمز با اولویت */
+        }
+
+        @keyframes shake {
+          0%, 100% { transform: translateX(0); }
+          20%, 60% { transform: translateX(-5px); }
+          40%, 80% { transform: translateX(5px); }
+        }
+
+        @media (max-width: 600px) {
+         .button {
+          font-size: 14px;
+          width: 100%;
+         }
+      }
+
+        .shake {
+          animation: shake 0.5s ease;
+        }
+    </style>      
+</head>
+<body class="bg-gray-900 text-white flex items-center justify-center min-h-screen">
+
+<!-- Main Menu -->
+<div id="main-menu" class="w-full max-w-md p-6 bg-gray-800 rounded-lg shadow-lg text-center font-vazirmatn">
+  <h1 class="text-3xl font-bold mb-2 font-lalezar">بازی انگل‌شناسی</h1>
+  <p class="mb-6 text-gray-400">دانشت در مورد انگل‌ها رو محک بزن!</p>
+
+  <h2 class="text-xl font-bold text-white mb-3">انتخاب دسته‌بندی:</h2>
+  <div class="grid grid-cols-2 sm:grid-cols-2 gap-3 mb-6">
+    <button onclick="selectTopic('سستود')" 
+      style="background-color:#06b6d4;" 
+      onmouseover="this.style.backgroundColor='#22d3ee';" 
+      onmouseout="this.style.backgroundColor='#06b6d4';" 
+      class="text-white font-semibold py-2 px-4 rounded-lg transition">سستودها</button>
+
+    <button onclick="selectTopic('ترماتود')" 
+      style="background-color:#06b6d4;" 
+      onmouseover="this.style.backgroundColor='#22d3ee';" 
+      onmouseout="this.style.backgroundColor='#06b6d4';" 
+      class="text-white font-semibold py-2 px-4 rounded-lg transition">ترماتودها</button>
+
+    <button onclick="selectTopic('نماتود')" 
+      style="background-color:#10b981 ;" 
+      onmouseover="this.style.backgroundColor='#34d399';" 
+      onmouseout="this.style.backgroundColor='#10b981';" 
+      class="text-white font-semibold py-2 px-4 rounded-lg transition">نماتودها</button>
+
+    <button onclick="selectTopic('آمیب')" 
+      style="background-color:#10b981 ;" 
+      onmouseover="this.style.backgroundColor='#34d399';" 
+      onmouseout="this.style.backgroundColor='#10b981';" 
+      class="text-white font-semibold py-2 px-4 rounded-lg transition">آمیب‌ها</button>
+
+    <button onclick="selectTopic('تاژک‌دار')" 
+      style="background-color:#f59e0b ;" 
+      onmouseover="this.style.backgroundColor='#fbbf24';" 
+      onmouseout="this.style.backgroundColor='#f59e0b';" 
+      class="text-white font-semibold py-2 px-4 rounded-lg transition">تاژک‌داران و مژک‌داران</button>
+
+    <button onclick="selectTopic('کوکسیدیا')" 
+      style="background-color:#f59e0b ;" 
+      onmouseover="this.style.backgroundColor='#fbbf24';" 
+      onmouseout="this.style.backgroundColor='#f59e0b';" 
+      class="text-white font-semibold py-2 px-4 rounded-lg transition">کوکسیدیاها</button>
+
+    <button onclick="selectTopic('اسپوروزوا')" 
+      style="background-color:#ef4444 ;" 
+      onmouseover="this.style.backgroundColor='#f87171';" 
+      onmouseout="this.style.backgroundColor='#ef4444';" 
+      class="text-white font-semibold py-2 px-4 rounded-lg transition">اسپوروزوا</button>
+
+    <button onclick="selectTopic('حشره')" 
+      style="background-color:#ef4444 ;" 
+      onmouseover="this.style.backgroundColor='#f87171';" 
+      onmouseout="this.style.backgroundColor='#ef4444';" 
+      class="text-white font-semibold py-2 px-4 rounded-lg transition">حشرات</button>
+
+    <button onclick="selectTopic('all')" 
+      style="background-color:#8b5cf6 ;" 
+      onmouseover="this.style.backgroundColor='#a78bfa';" 
+      onmouseout="this.style.backgroundColor='#8b5cf6';" 
+      class="text-white font-semibold py-2 px-4 rounded-lg transition col-span-2">همه مباحث</button>
+
+
+  </div>
+  <button onclick="window.location.href='index.html'" class="main-menu-button">
+    بازگشت به منوی اصلی
+  </button>
+
+</div>
+
+<!-- Game Screen -->
+<div id="game-screen" dir="ltr" class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-5xl w-full p-6 bg-gray-800 rounded-lg shadow-lg hidden font-vazirmatn">
+    <!-- سمت چپ: تصویر -->
+    <div class="flex items-center justify-center">
+        <img id="question-image" src="" alt="تصویر انگل" class="w-full h-full object-cover rounded-lg">
+    </div>
+
+    <!-- سمت راست: سوال و گزینه‌ها -->
+    <div class="flex flex-col justify-between">
+        <!-- کادر سوال -->
+        <div id="question-container" class="mb-4 p-4 bg-gray-700 rounded-lg">
+            <p id="question-text" class="text-xl font-semibold text-right" dir="rtl"><b>1.</b> در لام زیر چه مشاهده می‌شود؟</p>
+        </div>
+
+        <!-- گزینه‌ها -->
+        <div id="options-container" class="grid grid-cols-1 gap-3">
+            <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg">گزینه ۱</button>
+            <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg">گزینه ۲</button>
+            <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg">گزینه ۳</button>
+            <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg">گزینه ۴</button>
+        </div>
+        <div class="mt-4 text-lg font-bold text-white flex items-center justify-between">
+          <div class="flex items-center">
+           <span class="text-yellow-500 text-xl ml-2">⭐</span>
+           <span id="score">0</span>
+          </div>
+          <button onclick="endGame()" class="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded-lg text-sm">
+             پایان بازی
+          </button>
+        </div>
+                <!-- Progress Bar -->
+        <div class="w-full bg-gray-700 rounded-full h-2 mt-4">
+            <div id="progress-bar" class="bg-green-500 h-2 rounded-full"></div>
+        </div>
+    </div>
+
+</div>
+
+<!-- End Screen -->
+<div id="end-screen" class="w-full max-w-md p-6 bg-gray-800 rounded-lg shadow-lg hidden text-center font-vazirmatn">
+    <h2 class="text-3xl font-bold mb-6 font-lalezar">🏁 پایان بازی</h2>
+    <p class="text-xl mb-1 text-yellow-400">⭐ امتیاز شما:</p>
+    <p id="final-score" class="text-3xl mb-4 text-yellow-400">0</p>
+    <p id="final-percent" class="text-l mb-4 text-green-400">✅ درصد صحیح: %0</p>
+    <p id="final-wrongs" class="text-l mb-6 text-red-400">❌ تعداد غلط: 0</p>
+    <button onclick="restartGame()" class="button bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg w-full">
+        شروع مجدد
+    </button>
+</div>
+
+<script src="game.js"></script>
+
+</body>
+</html>
