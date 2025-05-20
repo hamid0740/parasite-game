@@ -915,6 +915,12 @@ function loadQuestion() {
     (question.qAnswer == "") ? (options.push(question.name)) : (options.push(question.qAnswer));
     options = shuffleArray(options);
 
+    // PRELOAD تصویر سوال بعدی
+    if (currentQuestion + 1 < lams.length) {
+      const preloadImage = new Image();
+      preloadImage.src = lams[currentQuestion + 1].image;
+    }
+
     // ساخت دکمه‌ها
     options.forEach((option, index) => {
       if (typeof option === "number") {
